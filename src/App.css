@@ -21,6 +21,10 @@
   font-size: 25px;
   font-weight: bold;
   margin-right: 35px;
+  cursor: pointer;
+}
+.selected {
+  text-decoration: underline;
 }
 .container-movies {
   background-color: rgba(228, 224, 224, 0.605);

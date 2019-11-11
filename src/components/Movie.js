@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import photo1 from "../images/slide-img-1.jpg";
+import React from "react";
 
-const Movie = () => {
+const Movie = props => {
+  const photo = "https://image.tmdb.org/t/p/w370_and_h556_bestv2";
   return (
-    <div class="slide">
-      <img className="photo" src={photo1} />
-      <div class="text">
-        <h1>Ant-Man and the Wasp</h1>
-        <h2>July 6, 2018</h2>
-        <p>
-          Scott Lang, cambrioleur de haut vol, va devoir apprendre à se
-          comporter en héros et aider son mentor, le Dr Hank Pym, à protéger le
-          secret de son spectaculaire costume d’Ant-Man, afin d’affronter une
-          effroyable menace…{" "}
-        </p>
+    <div className="slide">
+      <img
+        className="photo"
+        src={photo + props.photo}
+        alt={photo + props.photo}
+      />
+      <div className="text">
+        <h1>{props.title}</h1>
+        <h2>{props.date}</h2>
+        <p>{props.script}</p>
       </div>
     </div>
   );
