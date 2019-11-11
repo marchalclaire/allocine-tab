@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
+import axios from "axios";
+import Movie from "./components/Movie.js";
+import "./App.css";
+
+const App = () => {
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [upComingMovies, setUpComingMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+
+  const fetchdata = async () => {
+    const response = await axios.get(
+      "https://api-allocine.herokuapp.com/api/movies/popular"
+    );
+    setPopularMovies(response.data.results[0].title);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="header">
+        <img
+          className="logo"
+          src="https://upload.wikimedia.org/wikipedia/fr/3/35/Allocin%C3%A9_Logo.svg"
+        ></img>
+      </div>
+      <div className="Nav">
+        <div className="titles">
+          <span
+            className="title"
+            // onClick={event => {
+            //   const newPopularMovies = [...popularMovies];
+            //   newPopularMovies.push({ fetchdata });
+            //   setPopularMovies(newPopularMovies);
+            // }}
+          >
+            Popular Movies
+          </span>
+          <span className="title">Upcoming Movies</span>
+          <span className="title">Top Rated Movies</span>
+        </div>
+      </div>
+      <div className="container-movies">
+        <Movie></Movie>
+        <Movie></Movie>
+        <Movie></Movie>
+        <Movie></Movie>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
